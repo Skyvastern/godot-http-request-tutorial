@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8u5xxe3trf5f"]
+[gd_scene load_steps=4 format=3 uid="uid://c8u5xxe3trf5f"]
 
 [ext_resource type="PackedScene" uid="uid://cd3w1r8sdogvi" path="res://main/quiz/option/option.tscn" id="1_fjvxt"]
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_mp87d"]
+[ext_resource type="Script" path="res://main/quiz/quiz.gd" id="2_y4a2a"]
 
-[node name="Quiz" type="Control"]
+[node name="Quiz" type="Control" node_paths=PackedStringArray("question_label", "options")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +12,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mp87d")
+script = ExtResource("2_y4a2a")
+question_label = NodePath("Panel/QuestionPanel/Question")
+options = [NodePath("Panel/Options/OptionA"), NodePath("Panel/Options/OptionB"), NodePath("Panel/Options/OptionC"), NodePath("Panel/Options/OptionD")]
 
 [node name="Panel" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -56,17 +60,21 @@ theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 25
 columns = 2
 
-[node name="OptionA" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+[node name="OptionA" parent="Panel/Options" node_paths=PackedStringArray("quiz") instance=ExtResource("1_fjvxt")]
 layout_mode = 2
+quiz = NodePath("../../..")
 
-[node name="OptionB" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+[node name="OptionB" parent="Panel/Options" node_paths=PackedStringArray("quiz") instance=ExtResource("1_fjvxt")]
 layout_mode = 2
 text = "Option B"
+quiz = NodePath("../../..")
 
-[node name="OptionC" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+[node name="OptionC" parent="Panel/Options" node_paths=PackedStringArray("quiz") instance=ExtResource("1_fjvxt")]
 layout_mode = 2
 text = "Option C"
+quiz = NodePath("../../..")
 
-[node name="OptionD" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+[node name="OptionD" parent="Panel/Options" node_paths=PackedStringArray("quiz") instance=ExtResource("1_fjvxt")]
 layout_mode = 2
 text = "Option D"
+quiz = NodePath("../../..")

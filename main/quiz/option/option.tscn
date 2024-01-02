@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://cd3w1r8sdogvi"]
+[gd_scene load_steps=5 format=3 uid="uid://cd3w1r8sdogvi"]
+
+[ext_resource type="Script" path="res://main/quiz/option/option.gd" id="1_7u12e"]
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_wyv5w"]
+[ext_resource type="StyleBox" uid="uid://dea6yjnxoe7ki" path="res://main/quiz/option/styles/correct_option.tres" id="3_0qwex"]
+[ext_resource type="StyleBox" uid="uid://ce44m7nanfrtj" path="res://main/quiz/option/styles/incorrect_option.tres" id="4_08aqj"]
 
 [node name="Option" type="Button"]
 custom_minimum_size = Vector2(250, 0)
@@ -7,6 +12,10 @@ offset_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
+theme = ExtResource("1_wyv5w")
 theme_override_font_sizes/font_size = 26
 text = "Option A"
 text_overrun_behavior = 4
+script = ExtResource("1_7u12e")
+correct_option_style = ExtResource("3_0qwex")
+incorrect_option_style = ExtResource("4_08aqj")
