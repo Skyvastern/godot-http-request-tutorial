@@ -4,11 +4,15 @@ class_name Quiz
 signal question_result
 var index: int = -1
 var quiz_data: Array[Dictionary]
+var total_correct_answers: int = 0
 
 @export_group("UI")
 @export var question_label: Label
 @export var options: Array[Option]
 @export var continue_btn: Button
+
+@export_group("References")
+@export var scoreboard_scene: PackedScene
 
 
 func _ready() -> void:
@@ -18,6 +22,7 @@ func _ready() -> void:
 func start_questions(new_quiz_data: Array[Dictionary]) -> void:
 	quiz_data = new_quiz_data
 	index = -1
+	total_correct_answers = 0
 	
 	_next_question()
 	_reset_ui()
@@ -26,6 +31,10 @@ func start_questions(new_quiz_data: Array[Dictionary]) -> void:
 func _next_question() -> void:
 	index += 1
 	if index >= quiz_data.size():
+		var scoreboard: Scoreboard = scoreboard_scene.instantiate()
+		get_parent().add_child(scoreboard)
+		scoreboard.update_ui(total_correct_answers, quiz_data.size())
+		
 		queue_free()
 		return
 	
@@ -51,6 +60,9 @@ func _reset_ui() -> void:
 func validate_option(selected_option: String) -> void:
 	var correct_option: String = quiz_data[index]["correct_answer"]
 	question_result.emit(correct_option, selected_option)
+	
+	if correct_option == selected_option:
+		total_correct_answers += 1
 	
 	continue_btn.visible = true
 

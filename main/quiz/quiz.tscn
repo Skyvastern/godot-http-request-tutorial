@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8u5xxe3trf5f"]
+[gd_scene load_steps=5 format=3 uid="uid://c8u5xxe3trf5f"]
 
 [ext_resource type="PackedScene" uid="uid://cd3w1r8sdogvi" path="res://main/quiz/option/option.tscn" id="1_fjvxt"]
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_mp87d"]
 [ext_resource type="Script" path="res://main/quiz/quiz.gd" id="2_y4a2a"]
+[ext_resource type="PackedScene" uid="uid://dlnejs73knb00" path="res://main/quiz/scoreboard/scoreboard.tscn" id="3_md0fd"]
 
 [node name="Quiz" type="Control" node_paths=PackedStringArray("question_label", "options", "continue_btn")]
 layout_mode = 3
@@ -16,6 +17,7 @@ script = ExtResource("2_y4a2a")
 question_label = NodePath("Panel/QuestionPanel/Question")
 options = [NodePath("Panel/Options/OptionA"), NodePath("Panel/Options/OptionB"), NodePath("Panel/Options/OptionC"), NodePath("Panel/Options/OptionD")]
 continue_btn = NodePath("Panel/Footer/Continue")
+scoreboard_scene = ExtResource("3_md0fd")
 
 [node name="Panel" type="VBoxContainer" parent="."]
 layout_mode = 1
