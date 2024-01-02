@@ -26,3 +26,8 @@ func _on_quiz_question_result(correct_option: String, selected_option: String) -
 		set("theme_override_styles/disabled", correct_option_style)
 	elif selected_option == text:
 		set("theme_override_styles/disabled", incorrect_option_style)
+
+
+func reset_state() -> void:
+	set("theme_override_styles/disabled", null)
+	disabled = false

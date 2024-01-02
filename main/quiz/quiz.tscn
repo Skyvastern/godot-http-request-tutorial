@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_mp87d"]
 [ext_resource type="Script" path="res://main/quiz/quiz.gd" id="2_y4a2a"]
 
-[node name="Quiz" type="Control" node_paths=PackedStringArray("question_label", "options")]
+[node name="Quiz" type="Control" node_paths=PackedStringArray("question_label", "options", "continue_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ theme = ExtResource("1_mp87d")
 script = ExtResource("2_y4a2a")
 question_label = NodePath("Panel/QuestionPanel/Question")
 options = [NodePath("Panel/Options/OptionA"), NodePath("Panel/Options/OptionB"), NodePath("Panel/Options/OptionC"), NodePath("Panel/Options/OptionD")]
+continue_btn = NodePath("Panel/Footer/Continue")
 
 [node name="Panel" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -26,7 +27,7 @@ anchor_bottom = 0.5
 offset_left = -500.0
 offset_top = -200.0
 offset_right = 500.0
-offset_bottom = 200.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
@@ -78,3 +79,24 @@ quiz = NodePath("../../..")
 layout_mode = 2
 text = "Option D"
 quiz = NodePath("../../..")
+
+[node name="Footer" type="Control" parent="Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="Panel/Footer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -37.5
+offset_right = 150.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Continue"

@@ -8,6 +8,11 @@ var quiz_data: Array[Dictionary]
 @export_group("UI")
 @export var question_label: Label
 @export var options: Array[Option]
+@export var continue_btn: Button
+
+
+func _ready() -> void:
+	continue_btn.pressed.connect(_on_continue_btn_pressed)
 
 
 func start_questions(new_quiz_data: Array[Dictionary]) -> void:
@@ -15,11 +20,13 @@ func start_questions(new_quiz_data: Array[Dictionary]) -> void:
 	index = -1
 	
 	_next_question()
+	_reset_ui()
 
 
 func _next_question() -> void:
 	index += 1
 	if index >= quiz_data.size():
+		queue_free()
 		return
 	
 	var question_data: String = quiz_data[index]["question"]
@@ -35,6 +42,19 @@ func _update_ui(question_data: String, options_data: Array[String]) -> void:
 		options[i].set_option(op_text)
 
 
+func _reset_ui() -> void:
+	continue_btn.visible = false
+	for op in options:
+		op.reset_state()
+
+
 func validate_option(selected_option: String) -> void:
 	var correct_option: String = quiz_data[index]["correct_answer"]
 	question_result.emit(correct_option, selected_option)
+	
+	continue_btn.visible = true
+
+
+func _on_continue_btn_pressed() -> void:
+	_next_question()
+	_reset_ui()
