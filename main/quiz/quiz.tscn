@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8u5xxe3trf5f"]
+
+[ext_resource type="PackedScene" uid="uid://cd3w1r8sdogvi" path="res://main/quiz/option/option.tscn" id="1_fjvxt"]
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_mp87d"]
+
+[node name="Quiz" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mp87d")
+
+[node name="Panel" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="QuestionPanel" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(1000, 150)
+layout_mode = 2
+
+[node name="Question" type="Label" parent="Panel/QuestionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = 21.0
+offset_right = -58.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "This is a question."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Options" type="GridContainer" parent="Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="OptionA" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+layout_mode = 2
+
+[node name="OptionB" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+layout_mode = 2
+text = "Option B"
+
+[node name="OptionC" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+layout_mode = 2
+text = "Option C"
+
+[node name="OptionD" parent="Panel/Options" instance=ExtResource("1_fjvxt")]
+layout_mode = 2
+text = "Option D"
