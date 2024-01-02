@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnhypha53vglg"]
+
+[ext_resource type="Script" path="res://main/api/trivia_api/trivia_api.gd" id="1_vecas"]
+
+[node name="TriviaAPI" type="HTTPRequest"]
+script = ExtResource("1_vecas")

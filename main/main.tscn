@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://bs4kndfgqojdw"]
+[gd_scene load_steps=3 format=3 uid="uid://bs4kndfgqojdw"]
 
-[node name="Main" type="Node"]
+[ext_resource type="Script" path="res://main/main.gd" id="1_r7ing"]
+[ext_resource type="PackedScene" uid="uid://cnhypha53vglg" path="res://main/api/trivia_api/trivia_api.tscn" id="2_h86as"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("trivia_api")]
+script = ExtResource("1_r7ing")
+trivia_api = NodePath("TriviaAPI")
+
+[node name="TriviaAPI" parent="." instance=ExtResource("2_h86as")]
