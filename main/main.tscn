@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs4kndfgqojdw"]
+[gd_scene load_steps=3 format=3 uid="uid://bs4kndfgqojdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_r7ing"]
-[ext_resource type="PackedScene" uid="uid://bxd6le1ttoo50" path="res://main/quiz/get_questions_ui/get_questions_ui.tscn" id="2_we21l"]
-[ext_resource type="PackedScene" uid="uid://c8u5xxe3trf5f" path="res://main/quiz/quiz.tscn" id="3_rj3xf"]
+[ext_resource type="PackedScene" uid="uid://d1fkn24abso5e" path="res://main/main_menu/main_menu.tscn" id="2_1j2yu"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_r7ing")
 
-[node name="GetQuestionsUI" parent="." instance=ExtResource("2_we21l")]
-quiz_scene = ExtResource("3_rj3xf")
+[node name="MainMenu" parent="." instance=ExtResource("2_1j2yu")]

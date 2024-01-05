@@ -14,6 +14,7 @@ grow_vertical = 2
 theme = ExtResource("1_cs3c1")
 script = ExtResource("2_nw5c6")
 trivia_api = NodePath("TriviaAPI")
+quiz_path = "res://main/quiz/quiz.tscn"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

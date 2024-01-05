@@ -1,7 +1,7 @@
 extends Control
 
 @export var trivia_api: TriviaAPI
-@export var quiz_scene: PackedScene
+@export_file("*.tscn") var quiz_path
 
 
 func _ready() -> void:
@@ -10,10 +10,11 @@ func _ready() -> void:
 
 
 func _on_trivia_api_processed(_result, _response, json) -> void:
-	var quiz_data: Array[Dictionary] = parse_response(json)
-	
-	var quiz: Quiz = quiz_scene.instantiate()
+	var quiz_res: Resource = load(quiz_path)
+	var quiz: Quiz = quiz_res.instantiate()
 	get_parent().add_child(quiz)
+	
+	var quiz_data: Array[Dictionary] = parse_response(json)
 	quiz.start_questions(quiz_data)
 	
 	queue_free()

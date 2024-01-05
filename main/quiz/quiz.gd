@@ -12,7 +12,7 @@ var total_correct_answers: int = 0
 @export var continue_btn: Button
 
 @export_group("References")
-@export var scoreboard_scene: PackedScene
+@export_file("*.tscn") var scoreboard_path: String
 
 
 func _ready() -> void:
@@ -30,12 +30,15 @@ func start_questions(new_quiz_data: Array[Dictionary]) -> void:
 
 func _next_question() -> void:
 	index += 1
+	
 	if index >= quiz_data.size():
-		var scoreboard: Scoreboard = scoreboard_scene.instantiate()
+		var scoreboard_res: Resource = load(scoreboard_path)
+		var scoreboard: Scoreboard = scoreboard_res.instantiate()
 		get_parent().add_child(scoreboard)
-		scoreboard.update_ui(total_correct_answers, quiz_data.size())
 		
+		scoreboard.update_ui(total_correct_answers, quiz_data.size())
 		queue_free()
+		
 		return
 	
 	var question_data: String = quiz_data[index]["question"]
