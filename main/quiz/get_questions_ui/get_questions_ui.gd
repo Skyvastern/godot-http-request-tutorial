@@ -25,14 +25,23 @@ func parse_response(json: Dictionary) -> Array[Dictionary]:
 	var results: Array = json["results"]
 	
 	for item in results:
+		# Get the question
 		var question: String = item["question"]
+		question = _get_unescaped_string(question)
+		
+		# Get the options
 		var correct_answer: String = item["correct_answer"]
+		correct_answer = _get_unescaped_string(correct_answer)
 		
 		var options: Array[String] = []
 		options.append(item["correct_answer"])
 		options.append_array(item["incorrect_answers"])
 		options.shuffle()
 		
+		for i in range(options.size()):
+			options[i] = _get_unescaped_string(options[i])
+		
+		# Add them to the quiz_data
 		quiz_data.append({
 			"question": question,
 			"correct_answer": correct_answer,
@@ -40,3 +49,9 @@ func parse_response(json: Dictionary) -> Array[Dictionary]:
 		})
 	
 	return quiz_data
+
+
+func _get_unescaped_string(encoded_string: String) -> String:
+	var decoded_bytes: PackedByteArray = Marshalls.base64_to_raw(encoded_string)
+	var decoded_string: String = decoded_bytes.get_string_from_utf8()
+	return decoded_string

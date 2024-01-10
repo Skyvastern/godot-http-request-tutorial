@@ -2,7 +2,7 @@ extends HTTPRequest
 class_name TriviaAPI
 
 signal processed
-var url: String = "https://opentdb.com/api.php?amount=10&type=multiple"
+var url: String = "https://opentdb.com/api.php?amount=10&type=multiple&encode=base64"
 
 
 func _ready() -> void:
