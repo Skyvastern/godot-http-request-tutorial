@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs4kndfgqojdw"]
+[gd_scene load_steps=5 format=3 uid="uid://bs4kndfgqojdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_r7ing"]
 [ext_resource type="PackedScene" uid="uid://d1fkn24abso5e" path="res://main/main_menu/main_menu.tscn" id="2_1j2yu"]
 
+[sub_resource type="Gradient" id="Gradient_gle8i"]
+colors = PackedColorArray(0.21431, 0.368508, 1, 1, 0.342171, 0.591289, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6wjxq"]
+gradient = SubResource("Gradient_gle8i")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_r7ing")
+
+[node name="BG" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6wjxq")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_1j2yu")]
