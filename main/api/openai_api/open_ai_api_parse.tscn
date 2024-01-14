@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0eoxjrqsjohl"]
+
+[ext_resource type="Script" path="res://main/api/openai_api/open_ai_api_parse.gd" id="1_nu8xa"]
+[ext_resource type="PackedScene" uid="uid://da42db8oo8au6" path="res://main/api/openai_api/open_ai_api.tscn" id="2_2cls1"]
+
+[node name="OpenAI API Parse" type="Node" node_paths=PackedStringArray("open_ai_api")]
+script = ExtResource("1_nu8xa")
+open_ai_api = NodePath("OpenAI API")
+
+[node name="OpenAI API" parent="." instance=ExtResource("2_2cls1")]

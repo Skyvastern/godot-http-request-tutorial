@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxd6le1ttoo50"]
+[gd_scene load_steps=5 format=3 uid="uid://bxd6le1ttoo50"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_cs3c1"]
 [ext_resource type="Script" path="res://main/quiz/get_questions_ui/get_questions_ui.gd" id="2_nw5c6"]
-[ext_resource type="PackedScene" uid="uid://cnhypha53vglg" path="res://main/api/trivia_api/trivia_api.tscn" id="3_d4043"]
+[ext_resource type="PackedScene" uid="uid://ddxer2eslffq2" path="res://main/api/trivia_api/trivia_api_parse.tscn" id="3_ojxro"]
+[ext_resource type="PackedScene" uid="uid://c0eoxjrqsjohl" path="res://main/api/openai_api/open_ai_api_parse.tscn" id="4_wtugi"]
 
-[node name="GetQuestionsUI" type="Control" node_paths=PackedStringArray("trivia_api")]
+[node name="GetQuestionsUI" type="Control" node_paths=PackedStringArray("trivia_api_parse", "open_ai_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +14,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cs3c1")
 script = ExtResource("2_nw5c6")
-trivia_api = NodePath("TriviaAPI")
+trivia_api_parse = NodePath("TriviaAPI Parse")
+open_ai_api_parse = NodePath("OpenAI API Parse")
 quiz_path = "res://main/quiz/quiz.tscn"
 
 [node name="Label" type="Label" parent="."]
@@ -33,4 +35,6 @@ theme_override_colors/font_color = Color(0.980392, 0.980392, 0.980392, 1)
 theme_override_font_sizes/font_size = 50
 text = "Getting questions..."
 
-[node name="TriviaAPI" parent="." instance=ExtResource("3_d4043")]
+[node name="TriviaAPI Parse" parent="." instance=ExtResource("3_ojxro")]
+
+[node name="OpenAI API Parse" parent="." instance=ExtResource("4_wtugi")]

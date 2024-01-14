@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs4kndfgqojdw"]
+[gd_scene load_steps=5 format=3 uid="uid://bs4kndfgqojdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_r7ing"]
 [ext_resource type="PackedScene" uid="uid://d1fkn24abso5e" path="res://main/main_menu/main_menu.tscn" id="2_1j2yu"]
-[ext_resource type="PackedScene" uid="uid://da42db8oo8au6" path="res://main/api/openai_api/open_ai_api.tscn" id="3_8ojn5"]
 
 [sub_resource type="Gradient" id="Gradient_gle8i"]
 colors = PackedColorArray(0.21431, 0.368508, 1, 1, 0.342171, 0.591289, 1, 1)
@@ -12,9 +11,8 @@ gradient = SubResource("Gradient_gle8i")
 fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("open_ai_api")]
+[node name="Main" type="Node"]
 script = ExtResource("1_r7ing")
-open_ai_api = NodePath("OpenAI API")
 
 [node name="BG" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -25,5 +23,3 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_6wjxq")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_1j2yu")]
-
-[node name="OpenAI API" parent="." instance=ExtResource("3_8ojn5")]
