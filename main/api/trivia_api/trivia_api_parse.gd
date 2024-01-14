@@ -13,10 +13,10 @@ func make_request() -> void:
 	trivia_api.make_request()
 
 
-func _on_trivia_api_processed(_result, response, json) -> void:
+func _on_trivia_api_processed(result: int, response_code: int, json: Dictionary) -> void:
 	var quiz_data: Dictionary
 	
-	if response == 200:
+	if result == 0 and response_code == 200:
 		quiz_data = parse_response(json)
 	else:
 		quiz_data = {"message": "Unable to retrieve quiz data."}

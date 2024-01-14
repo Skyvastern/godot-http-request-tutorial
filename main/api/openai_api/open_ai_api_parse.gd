@@ -13,10 +13,10 @@ func make_request(question: String) -> void:
 	open_ai_api.make_request(question)
 
 
-func _on_open_ai_api_processed(_result: int, response_code: int, json: Dictionary) -> void:
+func _on_open_ai_api_processed(result: int, response_code: int, json: Dictionary) -> void:
 	var quiz_data: Dictionary
 	
-	if response_code == 200:
+	if result == 0 and response_code == 200:
 		var content: String = json["choices"][0]["message"]["content"]
 		quiz_data = JSON.parse_string(content)
 	else:
