@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl4vd0a384nep"]
+
+[ext_resource type="Script" path="res://main/common/home_btn/home_btn.gd" id="1_g5v8d"]
+[ext_resource type="Texture2D" uid="uid://b4gk104ab5rgi" path="res://main/common/home_btn/assets/home_icon.svg" id="1_qahht"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrgbd"]
+texture = ExtResource("1_qahht")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6qk0v"]
+load_path = "res://.godot/imported/home_icon.svg-3943a23902e018e20049c4eb66ba2d92.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r6dsa"]
+texture = SubResource("CompressedTexture2D_6qk0v")
+modulate_color = Color(0.882353, 0.882353, 0.882353, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f5j2s"]
+load_path = "res://.godot/imported/home_icon.svg-3943a23902e018e20049c4eb66ba2d92.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6iub"]
+texture = SubResource("CompressedTexture2D_f5j2s")
+modulate_color = Color(0.784314, 0.784314, 0.784314, 1)
+
+[node name="HomeBtn" type="Button"]
+offset_right = 50.0
+offset_bottom = 56.25
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_yrgbd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_r6dsa")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w6iub")
+script = ExtResource("1_g5v8d")
+main_menu_path = "res://main/main_menu/main_menu.tscn"
