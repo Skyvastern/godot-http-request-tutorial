@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da42db8oo8au6"]
+
+[ext_resource type="Script" path="res://main/api/openai_api/open_ai_api.gd" id="1_in7l4"]
+
+[node name="OpenAI API" type="HTTPRequest"]
+script = ExtResource("1_in7l4")
