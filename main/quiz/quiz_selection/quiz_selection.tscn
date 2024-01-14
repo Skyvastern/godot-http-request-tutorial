@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://baiu1fcobg1xy"]
+
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_m6t17"]
+[ext_resource type="Script" path="res://main/quiz/quiz_selection/quiz_selection.gd" id="2_6j4g4"]
+
+[node name="QuizSelection" type="Control" node_paths=PackedStringArray("random_btn", "custom_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m6t17")
+script = ExtResource("2_6j4g4")
+random_btn = NodePath("Buttons/Random")
+custom_btn = NodePath("Buttons/Custom")
+get_questions_ui_path = "res://main/quiz/get_questions_ui/get_questions_ui.tscn"
+quiz_custom_select_path = "res://main/quiz/quiz_selection/quiz_custom_select/quiz_custom_select.tscn"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -100.0
+offset_right = 206.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Random" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "Random"
+
+[node name="Custom" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "Custom"

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://osm8lf4pqk4c"]
+
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_d0q3h"]
+[ext_resource type="Script" path="res://main/quiz/quiz_selection/quiz_custom_select/quiz_custom_select.gd" id="2_ovu73"]
+
+[node name="QuizCustomSelect" type="Control" node_paths=PackedStringArray("question_input", "submit_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d0q3h")
+script = ExtResource("2_ovu73")
+question_input = NodePath("Container/QuestionInput")
+submit_btn = NodePath("Container/Submit")
+get_questions_ui_path = "res://main/quiz/get_questions_ui/get_questions_ui.tscn"
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -84.5
+offset_right = 400.0
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="QuestionInput" type="LineEdit" parent="Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Question..."
+
+[node name="Submit" type="Button" parent="Container"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "Submit"

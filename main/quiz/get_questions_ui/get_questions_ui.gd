@@ -1,4 +1,5 @@
 extends Control
+class_name GetQuestionsUI
 
 @export var trivia_api_parse: TriviaAPI_Parse
 @export var open_ai_api_parse: OpenAI_API_Parse
@@ -8,9 +9,14 @@ extends Control
 func _ready() -> void:
 	trivia_api_parse.parsed.connect(_on_api_response_parsed)
 	open_ai_api_parse.parsed.connect(_on_api_response_parsed)
-	
-	#trivia_api_parse.make_request()
-	open_ai_api_parse.make_request("Test my geography!")
+
+
+func get_random_quiz() -> void:
+	trivia_api_parse.make_request()
+
+
+func get_custom_quiz(question: String) -> void:
+	open_ai_api_parse.make_request(question)
 
 
 func _on_api_response_parsed(quiz_data: Dictionary) -> void:

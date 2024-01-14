@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_04jbn")
 script = ExtResource("1_noi8u")
 start_btn = NodePath("Start")
-get_questions_ui_path = "res://main/quiz/get_questions_ui/get_questions_ui.tscn"
+quiz_selection_path = "res://main/quiz/quiz_selection/quiz_selection.tscn"
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 1
@@ -29,5 +29,5 @@ offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 42
 text = "Start"

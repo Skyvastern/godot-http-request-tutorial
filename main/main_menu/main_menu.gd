@@ -2,7 +2,7 @@ extends Control
 class_name MainMenu
 
 @export var start_btn: Button
-@export_file("*.tscn") var get_questions_ui_path: String
+@export_file("*.tscn") var quiz_selection_path: String
 
 
 func _ready() -> void:
@@ -10,8 +10,8 @@ func _ready() -> void:
 
 
 func _on_start_btn_pressed() -> void:
-	var get_questions_ui_res: Resource = load(get_questions_ui_path)
-	var get_questions_ui: Node = get_questions_ui_res.instantiate()
-	get_parent().add_child(get_questions_ui)
+	var quiz_selection_res: Resource = load(quiz_selection_path)
+	var quiz_selection: Node = quiz_selection_res.instantiate()
+	get_parent().add_child(quiz_selection)
 	
 	queue_free()
