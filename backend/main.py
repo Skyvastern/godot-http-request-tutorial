@@ -1,8 +1,90 @@
-from fastapi import FastAPI, HTTPException, status
-from models import User, UserCreate
+from typing import Annotated
+from fastapi import FastAPI, HTTPException, status, Depends
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from passlib.context import CryptContext
+from jose import JWTError, jwt
+from datetime import datetime, timedelta, timezone
+from models import User, UserCreate, Token, TokenData
+
+
+
+db: dict[str, dict] = {}
+
+SECRET_KEY = "1fea7ffb7abb5ebd60b2357543b2664aa3abfbc4b5ec9118f4b5e2cd693d1f60"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 app = FastAPI()
-users: dict[str, dict] = {}
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+
+def get_user(db, username: str):
+    if username in db:
+        user_data = db[username]
+        return User(**user_data)
+
+
+def get_password_hash(password: str):
+    return pwd_context.hash(password)
+
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def authenticate_user(db, username: str, password: str):
+    user = get_user(db, username)
+
+    if not user:
+        return False
+
+    if not verify_password(password, user.password):
+        return False
+    
+    return user
+
+
+def create_access_token(data: dict, expires_delta: timedelta | None = None):
+    to_encode = data.copy()
+
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
+    
+    to_encode.update({"exp": expire})
+
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+
+async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Credentials cannot be validated.",
+        headers={"WWW-Authenticate": "Bearer"}
+    )
+
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+        
+        token_data = TokenData(username=username)
+
+    except JWTError:
+        raise credentials_exception
+    
+    user = get_user(db, username=token_data.username)
+    if user is None:
+        raise credentials_exception
+    
+    return user
+
 
 
 @app.get("/")
@@ -11,48 +93,53 @@ def read_root():
 
 
 @app.get("/user")
-def get_users():
-    return users
+def get_all_users():
+    return db
 
 
-@app.get("/user/{username}")
-def get_users(username: str):
-    return users[username]
+@app.get("/user/me")
+async def read_user_me(current_user: Annotated[User, Depends(get_current_user)]):
+    return current_user
 
 
 @app.post("/signup")
 def signup(user_create: UserCreate):
-    if user_create.username in users:
+    if user_create.username in db:
         raise HTTPException(status.HTTP_409_CONFLICT, f"{user_create.username} already exists.")
 
-    user_data: User = User(**user_create.model_dump())
-    users[user_create.username] = user_data.model_dump()
+    user_data: User = User(
+        username=user_create.username,
+        password=get_password_hash(user_create.password),
+        score_history=[]
+    )
+
+    db[user_data.username] = user_data.model_dump()
 
     return {
         "message": f"{user_create.username} registered!"
     }
 
 
-@app.post("/login")
-def signup(user: UserCreate):
-    if user.username not in users:
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "User not found.")
+@app.post("/token")
+def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]) -> Token:
+    user = authenticate_user(db, form_data.username, form_data.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password.",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
     
-    if user.password != users[user.username]["password"]:
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Incorrect password.")
-    
-    return {
-        "message": f"Successfully logged in!"
-    }
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user.username},
+        expires_delta=access_token_expires
+    )
+
+    return Token(access_token=access_token, token_type="bearer")
 
 
 @app.put("/score/{score}")
-def update_score(user: UserCreate, score: int):
-    if user.username not in users:
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "User not found.")
-    
-    if user.password != users[user.username]["password"]:
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Incorrect password.")
-    
-    users[user.username]["score_history"].append(score)
-    return users[user.username]
+def update_score(user: Annotated[User, Depends(get_current_user)], score: int):
+    db[user.username]["score_history"].append(score)
+    return db[user.username]
