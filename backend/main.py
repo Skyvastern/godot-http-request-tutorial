@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, status
 from models import User, UserCreate
 
 app = FastAPI()
@@ -23,9 +23,7 @@ def get_users(username: str):
 @app.post("/signup")
 def signup(user_create: UserCreate):
     if user_create.username in users:
-        return {
-            "message": f"{user_create.username} already exists."
-        }
+        raise HTTPException(status.HTTP_409_CONFLICT, f"{user_create.username} already exists.")
 
     user_data: User = User(**user_create.model_dump())
     users[user_create.username] = user_data.model_dump()
@@ -35,12 +33,26 @@ def signup(user_create: UserCreate):
     }
 
 
-@app.put("/user/{username}")
-def update_score(username: str, score: int):
-    if username not in users:
-        return {
-            "message": f"{username} not found."
-        }
+@app.post("/login")
+def signup(user: UserCreate):
+    if user.username not in users:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "User not found.")
     
-    users[username]["score_history"].append(score)
-    return users[username]
+    if user.password != users[user.username]["password"]:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Incorrect password.")
+    
+    return {
+        "message": f"Successfully logged in!"
+    }
+
+
+@app.put("/score/{score}")
+def update_score(user: UserCreate, score: int):
+    if user.username not in users:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "User not found.")
+    
+    if user.password != users[user.username]["password"]:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Incorrect password.")
+    
+    users[user.username]["score_history"].append(score)
+    return users[user.username]
