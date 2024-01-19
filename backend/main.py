@@ -86,6 +86,20 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     return user
 
 
+def get_token(username: str, password: str):
+    user = authenticate_user(db, username, password)
+    if not user:
+        return None
+    
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user.username},
+        expires_delta=access_token_expires
+    )
+
+    return Token(access_token=access_token, token_type="bearer")
+
+
 
 @app.get("/")
 def read_root():
@@ -104,6 +118,7 @@ async def read_user_me(current_user: Annotated[User, Depends(get_current_user)])
 
 @app.post("/signup")
 def signup(user_create: UserCreate):
+    # Setup user and add it to the database
     if user_create.username in db:
         raise HTTPException(status.HTTP_409_CONFLICT, f"{user_create.username} already exists.")
 
@@ -115,28 +130,37 @@ def signup(user_create: UserCreate):
 
     db[user_data.username] = user_data.model_dump()
 
+    # Create access token
+    access_token = get_token(user_create.username, user_create.password)
+    if not access_token:
+        db.pop(user_data.username)
+
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Unable to create the account, try again.",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
+
+    # Send the response
     return {
-        "message": f"{user_create.username} registered!"
+        "message": f"{user_create.username} registered!",
+        "access_token": access_token.access_token,
+        "token_type": access_token.token_type
     }
 
 
 @app.post("/token")
 def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]) -> Token:
-    user = authenticate_user(db, form_data.username, form_data.password)
-    if not user:
+    access_token = get_token(form_data.username, form_data.password)
+
+    if not access_token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password.",
             headers={"WWW-Authenticate": "Bearer"}
         )
     
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(
-        data={"sub": user.username},
-        expires_delta=access_token_expires
-    )
-
-    return Token(access_token=access_token, token_type="bearer")
+    return access_token
 
 
 @app.put("/score/{score}")
