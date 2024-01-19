@@ -1,3 +1,4 @@
+import uvicorn
 from typing import Annotated
 from fastapi import FastAPI, HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -167,3 +168,8 @@ def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depen
 def update_score(user: Annotated[User, Depends(get_current_user)], score: int):
     db[user.username]["score_history"].append(score)
     return db[user.username]
+
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info", reload=True)
