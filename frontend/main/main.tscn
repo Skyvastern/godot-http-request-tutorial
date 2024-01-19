@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bs4kndfgqojdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_r7ing"]
-[ext_resource type="PackedScene" uid="uid://d1fkn24abso5e" path="res://main/main_menu/main_menu.tscn" id="2_1j2yu"]
+[ext_resource type="PackedScene" uid="uid://dc3dkwsdabkqq" path="res://main/authentication/authentication.tscn" id="2_p4oxs"]
 
 [sub_resource type="Gradient" id="Gradient_gle8i"]
 colors = PackedColorArray(0.21431, 0.368508, 1, 1, 0.342171, 0.591289, 1, 1)
@@ -22,4 +22,4 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_6wjxq")
 
-[node name="MainMenu" parent="." instance=ExtResource("2_1j2yu")]
+[node name="Authentication" parent="." instance=ExtResource("2_p4oxs")]

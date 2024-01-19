@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2g6adnr5lxue"]
+
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_qc1fs"]
+[ext_resource type="Script" path="res://main/authentication/login_menu/login_menu.gd" id="2_jrfqt"]
+
+[node name="LoginMenu" type="Control" node_paths=PackedStringArray("username_input", "password_input", "login_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qc1fs")
+script = ExtResource("2_jrfqt")
+username_input = NodePath("Input/Username")
+password_input = NodePath("Input/Password")
+login_btn = NodePath("Input/LoginBtn")
+main_menu_path = "res://main/main_menu/main_menu.tscn"
+
+[node name="Input" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.0
+offset_top = -129.0
+offset_right = 343.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Username" type="LineEdit" parent="Input"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+placeholder_text = "Username"
+
+[node name="Password" type="LineEdit" parent="Input"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+placeholder_text = "Password"
+secret = true
+
+[node name="LoginBtn" type="Button" parent="Input"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 42
+text = "Login"
