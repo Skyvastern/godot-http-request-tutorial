@@ -178,6 +178,33 @@ def update_score(user: Annotated[User, Depends(get_current_user)], score: int):
     }
 
 
+@app.get("/score/leaderboard")
+def get_leaderboard():
+    users = []
+
+    for key, value in db.items():
+        score_history = value["score_history"]
+        score_count = len(score_history)
+        avg_score = 0
+
+        if score_count > 0:
+            sum_of_scores = sum(score_history)
+            avg_score = sum_of_scores / score_count
+        
+        users.append((key, avg_score))
+    
+    ranked_users = sorted(
+        users,
+        key=lambda x: x[1],
+        reverse=True
+    )
+    
+    return {
+        "message": "Success",
+        "ranked_users": ranked_users
+    }
+
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info", reload=True)
