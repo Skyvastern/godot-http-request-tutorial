@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0hyko3mk45fl"]
+
+[ext_resource type="Script" path="res://main/api/signup_api/signup_api_parse.gd" id="1_y26fn"]
+[ext_resource type="PackedScene" uid="uid://bfrs4o3g1arrc" path="res://main/api/signup_api/signup_api.tscn" id="2_mllly"]
+
+[node name="SignupAPI Parse" type="Node" node_paths=PackedStringArray("signup_api")]
+script = ExtResource("1_y26fn")
+signup_api = NodePath("SignupAPI")
+
+[node name="SignupAPI" parent="." instance=ExtResource("2_mllly")]

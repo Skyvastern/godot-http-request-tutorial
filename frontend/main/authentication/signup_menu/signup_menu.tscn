@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c65mcif2ssjei"]
+[gd_scene load_steps=5 format=3 uid="uid://c65mcif2ssjei"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_dc1eq"]
 [ext_resource type="Script" path="res://main/authentication/signup_menu/signup_menu.gd" id="2_g3ew3"]
+[ext_resource type="PackedScene" uid="uid://c0hyko3mk45fl" path="res://main/api/signup_api/signup_api_parse.tscn" id="3_8kwmb"]
+[ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="4_8l2ne"]
 
-[node name="SignupMenu" type="Control" node_paths=PackedStringArray("username_input", "password_input", "signup_btn")]
+[node name="SignupMenu" type="Control" node_paths=PackedStringArray("username_input", "password_input", "signup_btn", "status", "signup_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +17,8 @@ script = ExtResource("2_g3ew3")
 username_input = NodePath("Input/Username")
 password_input = NodePath("Input/Password")
 signup_btn = NodePath("Input/SignupBtn")
+status = NodePath("Status")
+signup_api_parse = NodePath("SignupAPI Parse")
 main_menu_path = "res://main/main_menu/main_menu.tscn"
 
 [node name="Input" type="VBoxContainer" parent="."]
@@ -48,3 +52,21 @@ layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 42
 text = "Signup"
+
+[node name="Status" parent="." instance=ExtResource("4_8l2ne")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -265.0
+offset_right = 540.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(540, 189)
+
+[node name="SignupAPI Parse" parent="." instance=ExtResource("3_8kwmb")]

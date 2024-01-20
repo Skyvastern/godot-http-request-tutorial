@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfrs4o3g1arrc"]
+
+[ext_resource type="Script" path="res://main/api/signup_api/signup_api.gd" id="1_pmte7"]
+
+[node name="SignupAPI" type="HTTPRequest"]
+timeout = 5.0
+script = ExtResource("1_pmte7")

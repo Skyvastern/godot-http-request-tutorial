@@ -5,22 +5,40 @@ class_name LoginMenu
 @export var username_input: LineEdit
 @export var password_input: LineEdit
 @export var login_btn: Button
+@export var status: Status
 
 @export_group("References")
+@export var login_api_parse: LoginAPI_Parse
 @export_file("*.tscn") var main_menu_path: String
 
 
 func _ready() -> void:
 	login_btn.pressed.connect(_on_login_btn_pressed)
+	login_api_parse.parsed.connect(_on_api_response_parsed)
+	
+	status.hide_loader()
 
 
 func _on_login_btn_pressed() -> void:
-	# Login
-	# ...
+	login_api_parse.make_request(
+		username_input.text,
+		password_input.text
+	)
 	
-	# Load main menu
-	var main_menu_res: Resource = load(main_menu_path)
-	var main_menu: Node = main_menu_res.instantiate()
-	get_parent().add_child(main_menu)
+	status.show_loader("Logging in...")
+
+
+func _on_api_response_parsed(data: Dictionary) -> void:
+	var message: String = data["message"]
 	
-	queue_free()
+	if message == "Success":
+		Global.access_token = data["access_token"]
+		
+		# Load main menu
+		var main_menu_res: Resource = load(main_menu_path)
+		var main_menu: Node = main_menu_res.instantiate()
+		get_parent().add_child(main_menu)
+		
+		queue_free()
+	else:
+		status.show_error(message)

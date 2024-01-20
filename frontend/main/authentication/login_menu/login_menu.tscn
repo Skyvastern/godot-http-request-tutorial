@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2g6adnr5lxue"]
+[gd_scene load_steps=5 format=3 uid="uid://b2g6adnr5lxue"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_qc1fs"]
 [ext_resource type="Script" path="res://main/authentication/login_menu/login_menu.gd" id="2_jrfqt"]
+[ext_resource type="PackedScene" uid="uid://ckjqdjq0i7s0b" path="res://main/api/login_api/login_api_parse.tscn" id="3_61uwb"]
+[ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_b3orm"]
 
-[node name="LoginMenu" type="Control" node_paths=PackedStringArray("username_input", "password_input", "login_btn")]
+[node name="LoginMenu" type="Control" node_paths=PackedStringArray("username_input", "password_input", "login_btn", "status", "login_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +17,8 @@ script = ExtResource("2_jrfqt")
 username_input = NodePath("Input/Username")
 password_input = NodePath("Input/Password")
 login_btn = NodePath("Input/LoginBtn")
+status = NodePath("Status")
+login_api_parse = NodePath("LoginAPI Parse")
 main_menu_path = "res://main/main_menu/main_menu.tscn"
 
 [node name="Input" type="VBoxContainer" parent="."]
@@ -48,3 +52,21 @@ layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 42
 text = "Login"
+
+[node name="Status" parent="." instance=ExtResource("3_b3orm")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -265.0
+offset_right = 540.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(540, 189)
+
+[node name="LoginAPI Parse" parent="." instance=ExtResource("3_61uwb")]

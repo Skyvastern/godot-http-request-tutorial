@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckjqdjq0i7s0b"]
+
+[ext_resource type="Script" path="res://main/api/login_api/login_api_parse.gd" id="1_gkmq4"]
+[ext_resource type="PackedScene" uid="uid://5awwdndt4ihx" path="res://main/api/login_api/login_api.tscn" id="2_7qix7"]
+
+[node name="LoginAPI Parse" type="Node" node_paths=PackedStringArray("login_api")]
+script = ExtResource("1_gkmq4")
+login_api = NodePath("LoginAPI")
+
+[node name="LoginAPI" parent="." instance=ExtResource("2_7qix7")]
