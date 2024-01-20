@@ -2,12 +2,12 @@
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_cs3c1"]
 [ext_resource type="Script" path="res://main/quiz/get_questions_ui/get_questions_ui.gd" id="2_nw5c6"]
-[ext_resource type="PackedScene" uid="uid://dv07trcukwy6p" path="res://main/quiz/get_questions_ui/loader/loader.tscn" id="3_gosiq"]
 [ext_resource type="PackedScene" uid="uid://ddxer2eslffq2" path="res://main/api/trivia_api/trivia_api_parse.tscn" id="3_ojxro"]
+[ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_u7f8t"]
 [ext_resource type="PackedScene" uid="uid://c0eoxjrqsjohl" path="res://main/api/openai_api/open_ai_api_parse.tscn" id="4_wtugi"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="6_oyifu"]
 
-[node name="GetQuestionsUI" type="Control" node_paths=PackedStringArray("loader", "status", "error_msg", "back_btn", "trivia_api_parse", "open_ai_api_parse")]
+[node name="GetQuestionsUI" type="Control" node_paths=PackedStringArray("status", "back_btn", "trivia_api_parse", "open_ai_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,67 +16,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cs3c1")
 script = ExtResource("2_nw5c6")
-loader = NodePath("Loader")
 status = NodePath("Status")
-error_msg = NodePath("ErrorMessage")
 back_btn = NodePath("Back")
 trivia_api_parse = NodePath("TriviaAPI Parse")
 open_ai_api_parse = NodePath("OpenAI API Parse")
 quiz_path = "res://main/quiz/quiz.tscn"
 quiz_selection_path = "res://main/quiz/quiz_selection/quiz_selection.tscn"
 
-[node name="Loader" parent="." instance=ExtResource("3_gosiq")]
+[node name="Status" parent="." instance=ExtResource("3_u7f8t")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -65.0
-offset_right = 32.0
-offset_bottom = -1.0
+offset_left = -540.0
+offset_top = -94.5
+offset_right = 540.0
+offset_bottom = 94.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Status" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.5
-offset_top = 17.0
-offset_right = 150.5
-offset_bottom = 62.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-text = "Getting questions..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ErrorMessage" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.5
-offset_top = -65.0
-offset_right = 150.5
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-text = "Error Message"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Back" type="Button" parent="."]
 visible = false
@@ -87,9 +46,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = 3.0
+offset_top = 56.0
 offset_right = 200.0
-offset_bottom = 93.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
