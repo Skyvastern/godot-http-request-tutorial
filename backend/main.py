@@ -171,7 +171,11 @@ def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depen
 @app.put("/score/{score}")
 def update_score(user: Annotated[User, Depends(get_current_user)], score: int):
     db[user.username]["score_history"].append(score)
-    return db[user.username]
+
+    return {
+        "message": "Success",
+        "user": db[user.username]
+    }
 
 
 
