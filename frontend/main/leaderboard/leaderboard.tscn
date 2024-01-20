@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2ndlp0x1fs6m"]
+[gd_scene load_steps=7 format=3 uid="uid://b2ndlp0x1fs6m"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_fdfqf"]
 [ext_resource type="Script" path="res://main/leaderboard/leaderboard.gd" id="2_kjc3n"]
 [ext_resource type="PackedScene" uid="uid://528nq45y7obc" path="res://main/leaderboard/elements/leaderboard_row.tscn" id="2_r1jxi"]
 [ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_uv2uk"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="5_qeti6"]
+[ext_resource type="PackedScene" uid="uid://dmhb3qnpkbfxy" path="res://main/api/leaderboard_api/leaderboard_api_parse.tscn" id="6_16go1"]
 
-[node name="Leaderboard" type="Control"]
+[node name="Leaderboard" type="Control" node_paths=PackedStringArray("users", "fields", "status", "leaderboard_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fdfqf")
 script = ExtResource("2_kjc3n")
+users = NodePath("Panel/Users")
+fields = NodePath("Panel/Users/Fields")
+status = NodePath("Panel/Status")
+leaderboard_api_parse = NodePath("LeaderboardAPI Parse")
+leaderboard_row_scene = ExtResource("2_r1jxi")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -52,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -310.0
-offset_top = -130.0
-offset_right = 390.0
-offset_bottom = 170.0
+offset_left = -350.0
+offset_top = -123.0
+offset_right = 350.0
+offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -65,12 +71,12 @@ layout_mode = 2
 [node name="Title" parent="Panel/Users/Fields" instance=ExtResource("2_r1jxi")]
 layout_mode = 2
 
-[node name="Name" parent="Panel/Users/Fields/Title" index="0"]
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+[node name="Username" parent="Panel/Users/Fields/Title" index="0"]
+theme_override_colors/font_outline_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 theme_override_constants/outline_size = 1
 
-[node name="Score" parent="Panel/Users/Fields/Title" index="1"]
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+[node name="AverageScore" parent="Panel/Users/Fields/Title" index="1"]
+theme_override_colors/font_outline_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 theme_override_constants/outline_size = 1
 
 [node name="Status" parent="Panel" instance=ExtResource("3_uv2uk")]
@@ -100,10 +106,13 @@ theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 
 [node name="HomeBtn" parent="." instance=ExtResource("5_qeti6")]
+layout_mode = 0
 offset_left = 30.0
 offset_top = 20.0
 offset_right = 80.0
 offset_bottom = 76.25
+
+[node name="LeaderboardAPI Parse" parent="." instance=ExtResource("6_16go1")]
 
 [editable path="Panel/Users/Fields/Title"]
 [editable path="Panel/Status"]

@@ -10,5 +10,5 @@ theme = ExtResource("1_dhuxj")
 theme_override_font_sizes/font_size = 32
 text = "Entry"
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 1
 text_overrun_behavior = 3

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmhb3qnpkbfxy"]
+
+[ext_resource type="Script" path="res://main/api/leaderboard_api/leaderboard_api_parse.gd" id="1_pa3et"]
+[ext_resource type="PackedScene" uid="uid://cly8gg1rbsa45" path="res://main/api/leaderboard_api/leaderboard_api.tscn" id="2_73bmm"]
+
+[node name="LeaderboardAPI Parse" type="Node" node_paths=PackedStringArray("leaderboard_api")]
+script = ExtResource("1_pa3et")
+leaderboard_api = NodePath("LeaderboardAPI")
+
+[node name="LeaderboardAPI" parent="." instance=ExtResource("2_73bmm")]

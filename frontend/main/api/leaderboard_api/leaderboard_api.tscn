@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cly8gg1rbsa45"]
+
+[ext_resource type="Script" path="res://main/api/leaderboard_api/leaderboard_api.gd" id="1_0mlk7"]
+
+[node name="LeaderboardAPI" type="HTTPRequest"]
+timeout = 5.0
+script = ExtResource("1_0mlk7")
