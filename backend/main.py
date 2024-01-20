@@ -144,14 +144,14 @@ def signup(user_create: UserCreate):
 
     # Send the response
     return {
-        "message": f"{user_create.username} registered!",
+        "message": "Success",
         "access_token": access_token.access_token,
         "token_type": access_token.token_type
     }
 
 
 @app.post("/token")
-def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]) -> Token:
+def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     access_token = get_token(form_data.username, form_data.password)
 
     if not access_token:
@@ -161,7 +161,11 @@ def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depen
             headers={"WWW-Authenticate": "Bearer"}
         )
     
-    return access_token
+    return {
+        "message": "Success",
+        "access_token": access_token.access_token,
+        "token_type": access_token.token_type
+    }
 
 
 @app.put("/score/{score}")
