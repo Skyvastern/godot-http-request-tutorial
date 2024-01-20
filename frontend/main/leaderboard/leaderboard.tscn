@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2ndlp0x1fs6m"]
+[gd_scene load_steps=8 format=3 uid="uid://b2ndlp0x1fs6m"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_fdfqf"]
 [ext_resource type="Script" path="res://main/leaderboard/leaderboard.gd" id="2_kjc3n"]
 [ext_resource type="PackedScene" uid="uid://528nq45y7obc" path="res://main/leaderboard/elements/leaderboard_row.tscn" id="2_r1jxi"]
 [ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_uv2uk"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="5_qeti6"]
+[ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="5_ulhic"]
 [ext_resource type="PackedScene" uid="uid://dmhb3qnpkbfxy" path="res://main/api/leaderboard_api/leaderboard_api_parse.tscn" id="6_16go1"]
 
 [node name="Leaderboard" type="Control" node_paths=PackedStringArray("users", "fields", "status", "leaderboard_api_parse")]
@@ -30,9 +31,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -500.0
-offset_top = -250.0
+offset_top = -218.0
 offset_right = 500.0
-offset_bottom = 250.0
+offset_bottom = 282.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -104,6 +105,17 @@ theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 
 [node name="ErrorMessage" parent="Panel/Status" index="2"]
 theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="ProfileLabel" parent="." instance=ExtResource("5_ulhic")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 25.0
+offset_right = 104.0
+offset_bottom = 83.0
+grow_horizontal = 2
 
 [node name="HomeBtn" parent="." instance=ExtResource("5_qeti6")]
 layout_mode = 0

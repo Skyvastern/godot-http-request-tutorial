@@ -36,12 +36,12 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 36
 text = "Signup"
 
 [node name="LoginBtn" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 36
 text = "Login"
