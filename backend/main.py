@@ -145,6 +145,7 @@ def signup(user_create: UserCreate):
     # Send the response
     return {
         "message": "Success",
+        "username": user_create.username,
         "access_token": access_token.access_token,
         "token_type": access_token.token_type
     }
@@ -163,6 +164,7 @@ def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depen
     
     return {
         "message": "Success",
+        "username": form_data.username,
         "access_token": access_token.access_token,
         "token_type": access_token.token_type
     }
