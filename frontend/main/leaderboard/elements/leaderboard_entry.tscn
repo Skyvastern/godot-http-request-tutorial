@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bckckjcalbc6w"]
+
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_dhuxj"]
+
+[node name="LeaderboardEntry" type="Label"]
+custom_minimum_size = Vector2(250, 50)
+offset_right = 250.0
+offset_bottom = 50.0
+theme = ExtResource("1_dhuxj")
+theme_override_font_sizes/font_size = 32
+text = "Entry"
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3

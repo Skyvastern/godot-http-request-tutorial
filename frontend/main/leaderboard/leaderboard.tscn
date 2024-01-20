@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2ndlp0x1fs6m"]
+
+[ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_fdfqf"]
+[ext_resource type="Script" path="res://main/leaderboard/leaderboard.gd" id="2_kjc3n"]
+[ext_resource type="PackedScene" uid="uid://528nq45y7obc" path="res://main/leaderboard/elements/leaderboard_row.tscn" id="2_r1jxi"]
+[ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_uv2uk"]
+[ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="5_qeti6"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fdfqf")
+script = ExtResource("2_kjc3n")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_top = 37.0
+offset_right = 129.5
+offset_bottom = 95.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "Leaderboard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Users" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -130.0
+offset_right = 390.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fields" type="VBoxContainer" parent="Panel/Users"]
+layout_mode = 2
+
+[node name="Title" parent="Panel/Users/Fields" instance=ExtResource("2_r1jxi")]
+layout_mode = 2
+
+[node name="Name" parent="Panel/Users/Fields/Title" index="0"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+
+[node name="Score" parent="Panel/Users/Fields/Title" index="1"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+
+[node name="Status" parent="Panel" instance=ExtResource("3_uv2uk")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -80.0
+offset_right = 540.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(540, 94)
+
+[node name="Loader" parent="Panel/Status" index="0"]
+modulate = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="StatusMessage" parent="Panel/Status" index="1"]
+theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="ErrorMessage" parent="Panel/Status" index="2"]
+theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="HomeBtn" parent="." instance=ExtResource("5_qeti6")]
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 76.25
+
+[editable path="Panel/Users/Fields/Title"]
+[editable path="Panel/Status"]
