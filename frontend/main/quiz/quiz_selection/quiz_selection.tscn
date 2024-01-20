@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://baiu1fcobg1xy"]
+[gd_scene load_steps=5 format=3 uid="uid://baiu1fcobg1xy"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_m6t17"]
 [ext_resource type="Script" path="res://main/quiz/quiz_selection/quiz_selection.gd" id="2_6j4g4"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="3_br4ti"]
+[ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="3_x0kr7"]
 
 [node name="QuizSelection" type="Control" node_paths=PackedStringArray("random_btn", "custom_btn")]
 layout_mode = 3
@@ -46,6 +47,17 @@ layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 36
 text = "Custom"
+
+[node name="ProfileLabel" parent="." instance=ExtResource("3_x0kr7")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 25.0
+offset_right = 104.0
+offset_bottom = 83.0
+grow_horizontal = 2
 
 [node name="HomeBtn" parent="." instance=ExtResource("3_br4ti")]
 layout_mode = 0

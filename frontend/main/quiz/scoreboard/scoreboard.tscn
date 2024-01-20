@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlnejs73knb00"]
+[gd_scene load_steps=6 format=3 uid="uid://dlnejs73knb00"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_jfn5p"]
 [ext_resource type="Script" path="res://main/quiz/scoreboard/scoreboard.gd" id="2_m4uxj"]
 [ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_75b44"]
 [ext_resource type="PackedScene" uid="uid://dlxibc8mm2hcs" path="res://main/api/score_api/score_api_parse.tscn" id="4_jklt6"]
+[ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="4_pw7yf"]
 
 [node name="Scoreboard" type="Control" node_paths=PackedStringArray("score", "continue_btn", "status", "score_api_parse")]
 layout_mode = 3
@@ -93,6 +94,17 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 36
 text = "Continue"
+
+[node name="ProfileLabel" parent="." instance=ExtResource("4_pw7yf")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 25.0
+offset_right = 104.0
+offset_bottom = 83.0
+grow_horizontal = 2
 
 [node name="ScoreAPI Parse" parent="." instance=ExtResource("4_jklt6")]
 

@@ -1,5 +1,6 @@
 extends Node
 
+var username: String
 var access_token: String
 
 

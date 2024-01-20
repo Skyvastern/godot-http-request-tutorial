@@ -32,6 +32,7 @@ func _on_api_response_parsed(data: Dictionary) -> void:
 	var message: String = data["message"]
 	
 	if message == "Success":
+		Global.username = data["username"]
 		Global.access_token = data["access_token"]
 		
 		# Load main menu

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1fkn24abso5e"]
+[gd_scene load_steps=4 format=3 uid="uid://d1fkn24abso5e"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_04jbn"]
 [ext_resource type="Script" path="res://main/main_menu/main_menu.gd" id="1_noi8u"]
+[ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="3_f5l7s"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("start_btn")]
 layout_mode = 3
@@ -31,3 +32,14 @@ grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 42
 text = "Start"
+
+[node name="ProfileLabel" parent="." instance=ExtResource("3_f5l7s")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 25.0
+offset_right = 104.0
+offset_bottom = 83.0
+grow_horizontal = 2

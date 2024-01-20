@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8u5xxe3trf5f"]
+[gd_scene load_steps=6 format=3 uid="uid://c8u5xxe3trf5f"]
 
 [ext_resource type="PackedScene" uid="uid://cd3w1r8sdogvi" path="res://main/quiz/option/option.tscn" id="1_fjvxt"]
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_mp87d"]
 [ext_resource type="Script" path="res://main/quiz/quiz.gd" id="2_y4a2a"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="4_x12w3"]
+[ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="4_xqer3"]
 
 [node name="Quiz" type="Control" node_paths=PackedStringArray("question_label", "options", "continue_btn")]
 layout_mode = 3
@@ -102,6 +103,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Continue"
+
+[node name="ProfileLabel" parent="." instance=ExtResource("4_xqer3")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 25.0
+offset_right = 104.0
+offset_bottom = 83.0
+grow_horizontal = 2
 
 [node name="HomeBtn" parent="." instance=ExtResource("4_x12w3")]
 layout_mode = 0

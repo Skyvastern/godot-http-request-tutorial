@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://osm8lf4pqk4c"]
+[gd_scene load_steps=5 format=3 uid="uid://osm8lf4pqk4c"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_d0q3h"]
 [ext_resource type="Script" path="res://main/quiz/quiz_selection/quiz_custom_select/quiz_custom_select.gd" id="2_ovu73"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="3_gouwx"]
+[ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="3_nu02g"]
 
 [node name="QuizCustomSelect" type="Control" node_paths=PackedStringArray("question_input", "submit_btn")]
 layout_mode = 3
@@ -43,6 +44,17 @@ layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 36
 text = "Submit"
+
+[node name="ProfileLabel" parent="." instance=ExtResource("3_nu02g")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 25.0
+offset_right = 104.0
+offset_bottom = 83.0
+grow_horizontal = 2
 
 [node name="HomeBtn" parent="." instance=ExtResource("3_gouwx")]
 layout_mode = 0
