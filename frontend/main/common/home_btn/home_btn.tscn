@@ -29,3 +29,4 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_r6dsa")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w6iub")
 script = ExtResource("1_g5v8d")
 main_menu_path = "res://main/main_menu/main_menu.tscn"
+authentication_menu_path = "res://main/authentication/authentication.tscn"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c65mcif2ssjei"]
+[gd_scene load_steps=6 format=3 uid="uid://c65mcif2ssjei"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_dc1eq"]
 [ext_resource type="Script" path="res://main/authentication/signup_menu/signup_menu.gd" id="2_g3ew3"]
 [ext_resource type="PackedScene" uid="uid://c0hyko3mk45fl" path="res://main/api/signup_api/signup_api_parse.tscn" id="3_8kwmb"]
 [ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="4_8l2ne"]
+[ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="4_fytgf"]
 
 [node name="SignupMenu" type="Control" node_paths=PackedStringArray("username_input", "password_input", "signup_btn", "status", "signup_api_parse")]
 layout_mode = 3
@@ -68,5 +69,11 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(540, 189)
+
+[node name="HomeBtn" parent="." instance=ExtResource("4_fytgf")]
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 76.25
 
 [node name="SignupAPI Parse" parent="." instance=ExtResource("3_8kwmb")]
