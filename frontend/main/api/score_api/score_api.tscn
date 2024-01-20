@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4j7ni643upnl"]
+
+[ext_resource type="Script" path="res://main/api/score_api/score_api.gd" id="1_o3wxx"]
+
+[node name="ScoreAPI" type="HTTPRequest"]
+timeout = 5.0
+script = ExtResource("1_o3wxx")

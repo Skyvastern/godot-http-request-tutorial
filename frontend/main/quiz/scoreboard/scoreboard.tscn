@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlnejs73knb00"]
+[gd_scene load_steps=5 format=3 uid="uid://dlnejs73knb00"]
 
 [ext_resource type="Theme" uid="uid://c8v85lvkq7wrp" path="res://main/common/main_theme.tres" id="1_jfn5p"]
 [ext_resource type="Script" path="res://main/quiz/scoreboard/scoreboard.gd" id="2_m4uxj"]
+[ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_75b44"]
+[ext_resource type="PackedScene" uid="uid://dlxibc8mm2hcs" path="res://main/api/score_api/score_api_parse.tscn" id="4_jklt6"]
 
-[node name="Scoreboard" type="Control" node_paths=PackedStringArray("score", "continue_btn")]
+[node name="Scoreboard" type="Control" node_paths=PackedStringArray("score", "continue_btn", "status", "score_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +16,8 @@ theme = ExtResource("1_jfn5p")
 script = ExtResource("2_m4uxj")
 score = NodePath("Panel/Score")
 continue_btn = NodePath("Panel/Continue")
+status = NodePath("Panel/Status")
+score_api_parse = NodePath("ScoreAPI Parse")
 main_menu_path = "res://main/main_menu/main_menu.tscn"
 
 [node name="Panel" type="Panel" parent="."]
@@ -48,7 +52,33 @@ text = "Score: 5/10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Status" parent="Panel" instance=ExtResource("3_75b44")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -283.0
+offset_right = 540.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(540, 189)
+
+[node name="Loader" parent="Panel/Status" index="0"]
+modulate = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="StatusMessage" parent="Panel/Status" index="1"]
+theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="ErrorMessage" parent="Panel/Status" index="2"]
+theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
 [node name="Continue" type="Button" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -63,3 +93,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 36
 text = "Continue"
+
+[node name="ScoreAPI Parse" parent="." instance=ExtResource("4_jklt6")]
+
+[editable path="Panel/Status"]

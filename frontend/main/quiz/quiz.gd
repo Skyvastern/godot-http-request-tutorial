@@ -36,7 +36,7 @@ func _next_question() -> void:
 		var scoreboard: Scoreboard = scoreboard_res.instantiate()
 		get_parent().add_child(scoreboard)
 		
-		scoreboard.update_ui(total_correct_answers, quiz_data["questions"].size())
+		scoreboard.save_stats(total_correct_answers, quiz_data["questions"].size())
 		queue_free()
 		
 		return

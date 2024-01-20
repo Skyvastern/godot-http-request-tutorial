@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlxibc8mm2hcs"]
+
+[ext_resource type="Script" path="res://main/api/score_api/score_api_parse.gd" id="1_bmi1h"]
+[ext_resource type="PackedScene" uid="uid://b4j7ni643upnl" path="res://main/api/score_api/score_api.tscn" id="2_uel6j"]
+
+[node name="ScoreAPI Parse" type="Node" node_paths=PackedStringArray("score_api")]
+script = ExtResource("1_bmi1h")
+score_api = NodePath("ScoreAPI")
+
+[node name="ScoreAPI" parent="." instance=ExtResource("2_uel6j")]
