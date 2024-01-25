@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from models import User, UserCreate, Token, TokenData
 
 
+# region Initialization
 
 db: dict[str, dict] = {}
 
@@ -19,7 +20,10 @@ app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+# endregion
 
+
+# region Helper methods
 
 def get_user(db, username: str):
     if username in db:
@@ -100,7 +104,10 @@ def get_token(username: str, password: str):
 
     return Token(access_token=access_token, token_type="bearer")
 
+# endregion
 
+
+# region API Endpoints
 
 @app.get("/")
 def read_root():
@@ -206,6 +213,7 @@ def get_leaderboard():
         "ranked_users": ranked_users
     }
 
+# endregion
 
 
 if __name__ == "__main__":
