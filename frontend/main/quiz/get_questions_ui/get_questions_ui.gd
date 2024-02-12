@@ -7,14 +7,14 @@ class_name GetQuestionsUI
 
 @export_group("References")
 @export var trivia_api_parse: TriviaAPI_Parse
-@export var open_ai_api_parse: OpenAI_API_Parse
+@export var textgen_api_parse: Textgen_API_Parse
 @export_file("*.tscn") var quiz_path
 @export_file("*.tscn") var quiz_selection_path
 
 
 func _ready() -> void:
 	trivia_api_parse.parsed.connect(_on_api_response_parsed)
-	open_ai_api_parse.parsed.connect(_on_api_response_parsed)
+	textgen_api_parse.parsed.connect(_on_api_response_parsed)
 	back_btn.pressed.connect(_on_back_btn_pressed)
 	
 	status.show_loader("Getting questions...")
@@ -26,7 +26,7 @@ func get_random_quiz() -> void:
 
 
 func get_custom_quiz(question: String) -> void:
-	open_ai_api_parse.make_request(question)
+	textgen_api_parse.make_request(question)
 
 
 func _on_api_response_parsed(quiz_data: Dictionary) -> void:

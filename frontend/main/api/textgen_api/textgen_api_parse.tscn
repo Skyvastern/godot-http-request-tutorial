@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0eoxjrqsjohl"]
+
+[ext_resource type="Script" path="res://main/api/textgen_api/textgen_api_parse.gd" id="1_nu8xa"]
+[ext_resource type="PackedScene" uid="uid://da42db8oo8au6" path="res://main/api/textgen_api/textgen_api.tscn" id="2_2cls1"]
+
+[node name="TextgenAPI Parse" type="Node" node_paths=PackedStringArray("textgen_api")]
+script = ExtResource("1_nu8xa")
+textgen_api = NodePath("TextgenAPI")
+
+[node name="TextgenAPI" parent="." instance=ExtResource("2_2cls1")]

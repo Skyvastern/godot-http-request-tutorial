@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://main/quiz/get_questions_ui/get_questions_ui.gd" id="2_nw5c6"]
 [ext_resource type="PackedScene" uid="uid://ddxer2eslffq2" path="res://main/api/trivia_api/trivia_api_parse.tscn" id="3_ojxro"]
 [ext_resource type="PackedScene" uid="uid://01uxr0pf1ow3" path="res://main/common/status/status.tscn" id="3_u7f8t"]
-[ext_resource type="PackedScene" uid="uid://c0eoxjrqsjohl" path="res://main/api/openai_api/open_ai_api_parse.tscn" id="4_wtugi"]
+[ext_resource type="PackedScene" uid="uid://c0eoxjrqsjohl" path="res://main/api/textgen_api/textgen_api_parse.tscn" id="4_wtugi"]
 [ext_resource type="PackedScene" uid="uid://hp7wa42mvolq" path="res://main/common/profile_label/profile_label.tscn" id="5_g1aip"]
 [ext_resource type="PackedScene" uid="uid://bl4vd0a384nep" path="res://main/common/home_btn/home_btn.tscn" id="6_oyifu"]
 
-[node name="GetQuestionsUI" type="Control" node_paths=PackedStringArray("status", "back_btn", "trivia_api_parse", "open_ai_api_parse")]
+[node name="GetQuestionsUI" type="Control" node_paths=PackedStringArray("status", "back_btn", "trivia_api_parse", "textgen_api_parse")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ script = ExtResource("2_nw5c6")
 status = NodePath("Status")
 back_btn = NodePath("Back")
 trivia_api_parse = NodePath("TriviaAPI Parse")
-open_ai_api_parse = NodePath("OpenAI API Parse")
+textgen_api_parse = NodePath("TextgenAPI Parse")
 quiz_path = "res://main/quiz/quiz.tscn"
 quiz_selection_path = "res://main/quiz/quiz_selection/quiz_selection.tscn"
 
@@ -76,4 +76,4 @@ offset_bottom = 76.25
 
 [node name="TriviaAPI Parse" parent="." instance=ExtResource("3_ojxro")]
 
-[node name="OpenAI API Parse" parent="." instance=ExtResource("4_wtugi")]
+[node name="TextgenAPI Parse" parent="." instance=ExtResource("4_wtugi")]

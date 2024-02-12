@@ -1,19 +1,19 @@
 extends Node
-class_name OpenAI_API_Parse
+class_name Textgen_API_Parse
 
 signal parsed
-@export var open_ai_api: OpenAI_API
+@export var textgen_api: Textgen_API
 
 
 func _ready() -> void:
-	open_ai_api.processed.connect(_on_open_ai_api_processed)
+	textgen_api.processed.connect(_on_textgen_api_processed)
 
 
 func make_request(question: String) -> void:
-	open_ai_api.make_request(question)
+	textgen_api.make_request(question)
 
 
-func _on_open_ai_api_processed(result: int, response_code: int, json: Dictionary) -> void:
+func _on_textgen_api_processed(result: int, response_code: int, json: Dictionary) -> void:
 	var quiz_data: Dictionary
 	
 	if result == 0 and response_code == 200:

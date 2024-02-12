@@ -1,5 +1,5 @@
 extends HTTPRequest
-class_name OpenAI_API
+class_name Textgen_API
 
 signal processed
 var url: String = "https://api.openai.com/v1/chat/completions"
