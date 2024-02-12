@@ -32,12 +32,16 @@ func _next_question() -> void:
 	index += 1
 	
 	if index >= quiz_data["questions"].size():
-		var scoreboard_res: Resource = load(scoreboard_path)
-		var scoreboard: Scoreboard = scoreboard_res.instantiate()
-		get_parent().add_child(scoreboard)
-		
-		scoreboard.save_stats(total_correct_answers, quiz_data["questions"].size())
-		queue_free()
+		Global.load_menu(
+			self,
+			scoreboard_path,
+			[
+				{
+					"name": "save_stats",
+					"args": [total_correct_answers, quiz_data["questions"].size()]
+				}
+			]
+		)
 		
 		return
 	

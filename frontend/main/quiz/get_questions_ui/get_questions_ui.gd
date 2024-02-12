@@ -33,21 +33,20 @@ func _on_api_response_parsed(quiz_data: Dictionary) -> void:
 	var message: String = quiz_data["message"]
 	
 	if message == "Success":
-		var quiz_res: Resource = load(quiz_path)
-		var quiz: Quiz = quiz_res.instantiate()
-		get_parent().add_child(quiz)
-		
-		quiz.start_questions(quiz_data)
-		
-		queue_free()
+		Global.load_menu(
+			self,
+			quiz_path,
+			[
+				{
+					"name": "start_questions",
+					"args": [quiz_data]
+				}
+			]
+		)
 	else:
 		status.show_error(message)
 		back_btn.visible = true
 
 
 func _on_back_btn_pressed() -> void:
-	var quiz_selection_res: Resource = load(quiz_selection_path)
-	var quiz_selection: QuizSelection = quiz_selection_res.instantiate()
-	get_parent().add_child(quiz_selection)
-	
-	queue_free()
+	Global.load_menu(self, quiz_selection_path)

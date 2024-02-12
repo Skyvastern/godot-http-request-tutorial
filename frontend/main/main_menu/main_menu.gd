@@ -16,16 +16,8 @@ func _ready() -> void:
 
 
 func _on_start_btn_pressed() -> void:
-	var quiz_selection_res: Resource = load(quiz_selection_path)
-	var quiz_selection: Node = quiz_selection_res.instantiate()
-	get_parent().add_child(quiz_selection)
-	
-	queue_free()
+	Global.load_menu(self, quiz_selection_path)
 
 
 func _on_leaderboard_btn_pressed() -> void:
-	var leaderboard_res: Resource = load(leaderboard_path)
-	var leaderboard: Node = leaderboard_res.instantiate()
-	get_parent().add_child(leaderboard)
-	
-	queue_free()
+	Global.load_menu(self, leaderboard_path)

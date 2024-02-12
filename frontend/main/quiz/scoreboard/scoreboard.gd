@@ -25,11 +25,7 @@ func save_stats(correct_answers: int, total_questions: int) -> void:
 
 
 func _on_continue_btn_pressed() -> void:
-	var main_menu_res: Resource = load(main_menu_path)
-	var main_menu: MainMenu = main_menu_res.instantiate()
-	get_parent().add_child(main_menu)
-	
-	queue_free()
+	Global.load_menu(self, main_menu_path)
 
 
 func _on_api_response_parsed(data: Dictionary) -> void:

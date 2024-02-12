@@ -16,16 +16,8 @@ func _ready() -> void:
 
 
 func _on_signup_btn_pressed() -> void:
-	var signup_menu_res: Resource = load(signup_menu_path)
-	var signup_menu: Node = signup_menu_res.instantiate()
-	get_parent().add_child(signup_menu)
-	
-	queue_free()
+	Global.load_menu(self, signup_menu_path)
 
 
 func _on_login_btn_pressed() -> void:
-	var login_menu_res: Resource = load(login_menu_path)
-	var login_menu: Node = login_menu_res.instantiate()
-	get_parent().add_child(login_menu)
-	
-	queue_free()
+	Global.load_menu(self, login_menu_path)

@@ -14,11 +14,13 @@ func _ready() -> void:
 
 
 func _on_submit_btn_pressed() -> void:
-	var get_questions_ui_res: Resource = load(get_questions_ui_path)
-	var get_questions_ui: GetQuestionsUI = get_questions_ui_res.instantiate()
-	get_parent().add_child(get_questions_ui)
-	
-	var question: String = question_input.text
-	get_questions_ui.get_custom_quiz(question)
-	
-	queue_free()
+	Global.load_menu(
+		self,
+		get_questions_ui_path,
+		[
+			{
+				"name": "get_custom_quiz",
+				"args": [question_input.text]
+			}
+		]
+	)

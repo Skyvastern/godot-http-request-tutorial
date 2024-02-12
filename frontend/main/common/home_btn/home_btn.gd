@@ -11,14 +11,6 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	if Global.access_token == "":
-		var authentication_menu_res: Resource = load(authentication_menu_path)
-		var authentication_menu: Authentication = authentication_menu_res.instantiate()
-		get_parent().get_parent().add_child(authentication_menu)
-		
-		get_parent().queue_free()
+		Global.load_menu(get_parent(), authentication_menu_path)
 	else:
-		var main_menu_res: Resource = load(main_menu_path)
-		var main_menu: MainMenu = main_menu_res.instantiate()
-		get_parent().get_parent().add_child(main_menu)
-		
-		get_parent().queue_free()
+		Global.load_menu(get_parent(), main_menu_path)
